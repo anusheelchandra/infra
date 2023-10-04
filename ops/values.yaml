@@ -1,0 +1,9 @@
+---
+# Standard values
+env: dev
+name: foobar
+rev: latest
+
+# REST OF THE BELOW CONFIGS CAN BE OVERRIDDEN FOR EACH ENVIRONMENT
+# Check values/<dev|qa|...>.yaml files
+config_replicas: 1

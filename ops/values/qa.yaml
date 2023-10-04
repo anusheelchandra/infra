@@ -1,0 +1,6 @@
+# this is used only when `env=qa`
+# and its used *in addition* to the default values.yaml
+config_replicas: 1
+env: qa
+app_env: qa
+cloudsql_proxy: foobar-dev:europe-west1:foobar=tcp:0.0.0.0:3306

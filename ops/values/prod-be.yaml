@@ -1,0 +1,6 @@
+# this is used only when `env=prod-be`
+# and its used *in addition* to the default values.yaml
+config_replicas: 0
+env: prod-be
+app_env: prod
+cloudsql_proxy: foobar-dev:europe-west1:foobar=tcp:0.0.0.0:3306

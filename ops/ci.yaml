@@ -1,0 +1,40 @@
+
+.meta:
+  name: foobar
+  group: foobar-dev
+  email: foobar-dev@x.com
+  slack: foobar-deployment
+
+.job_defaults: &job_template
+  image: eu.gcr.io/foobar-dev/jdk11:latest
+
+# anything with stage:test is run on PRs
+unit-tests:
+  <<: *job_template
+  stage: test
+  script: myke ci_unit
+
+# every ci.yaml needs one "master" job which is the entrypoint for the pipeline
+master:
+  <<: *job_template
+  script: make ci_master
+
+stages:
+  - staging
+  - prod
+
+deploy_qa:
+  <<: *job_template
+  stage: staging
+  environment:
+    name: qa
+    .credentials: ""
+  script: make ci_deploy
+
+deploy_prod:
+ <<: *job_template
+ stage: prod
+ environment:
+   name: prod-be
+   .credentials: ""
+ script: make ci_deploy
